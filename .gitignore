@@ -11,7 +11,7 @@ node_modules/
 
 # production
 /frontend/build
-
+seeder/
 # misc
 .DS_Store
 .env

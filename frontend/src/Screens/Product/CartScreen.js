@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   Col,
   ListGroup,
@@ -7,34 +7,34 @@ import {
   Button,
   Card,
   Form,
-} from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Message from "../../components/Message";
+} from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Message from '../../components/Message';
 import {
   addToCart,
   plusToCart,
   removeFromCart,
-} from "../../redux/actions/cartActions";
-import { CART_PLUS_ITEM } from "../../redux/constants/cartConstants";
+} from '../../redux/actions/cartActions';
+import { CART_PLUS_ITEM } from '../../redux/constants/cartConstants';
 
 const CartScreen = ({ history, match, location }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const productId = match.params.id;
-  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty, history]);
-
+  console.log(match);
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push('/login?redirect=shipping');
   };
   return (
     <Row>
@@ -94,12 +94,12 @@ const CartScreen = ({ history, match, location }) => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                {" "}
+                {' '}
                 SUBTOTAL (
                 {cartItems.reduce((acc, item) => Number(acc + item.qty), 0)})
                 ITEMS
               </h2>
-              ${" "}
+              ${' '}
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}

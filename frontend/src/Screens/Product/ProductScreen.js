@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ReactPlayer from "react-player/youtube";
+import React, { useEffect, useState } from 'react';
+import ReactPlayer from 'react-player/youtube';
 import {
   Button,
   Card,
@@ -10,23 +10,23 @@ import {
   Carousel,
   ListGroupItem,
   Form,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
 import {
   createProductReview,
   listProductDetails,
-} from "../../redux/actions/productsActions";
-import Rating from "../../components/Rating";
-import { PRODUCT_CREATE_REVIEW_RESET } from "../../redux/constants/productConstants";
-import Meta from "../../components/Meta";
+} from '../../redux/actions/productsActions';
+import Rating from '../../components/Rating';
+import { PRODUCT_CREATE_REVIEW_RESET } from '../../redux/constants/productConstants';
+import Meta from '../../components/Meta';
 
-export default function ProductScreen({ match, history }) {
+const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1);
   const [ratingStar, setRatingStar] = useState(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   const dispatch = useDispatch();
 
@@ -41,9 +41,9 @@ export default function ProductScreen({ match, history }) {
 
   useEffect(() => {
     if (sccessProductReview) {
-      alert("Review Submitted!");
+      alert('Review Submitted!');
       setRatingStar(0);
-      setComment("");
+      setComment('');
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
     dispatch(listProductDetails(match.params.id));
@@ -80,7 +80,7 @@ export default function ProductScreen({ match, history }) {
               <Carousel>
                 <Carousel.Item>
                   <Image
-                    style={{ height: "350px" }}
+                    style={{ height: '350px' }}
                     className='d-block w-100'
                     src={product.imgSm}
                     alt='First slide'
@@ -90,7 +90,7 @@ export default function ProductScreen({ match, history }) {
                 </Carousel.Item>
                 <Carousel.Item>
                   <Image
-                    style={{ height: "350px" }}
+                    style={{ height: '350px' }}
                     className='d-block w-100'
                     src={product.img}
                     alt='Second slide'
@@ -117,7 +117,7 @@ export default function ProductScreen({ match, history }) {
                 <ListGroupItem>
                   <Image
                     className='me-2'
-                    style={{ width: "50px" }}
+                    style={{ width: '50px' }}
                     src='/images/Imdb_logo.png'
                     alt=''
                   />
@@ -245,4 +245,6 @@ export default function ProductScreen({ match, history }) {
       </Row>
     </>
   );
-}
+};
+
+export default ProductScreen;
